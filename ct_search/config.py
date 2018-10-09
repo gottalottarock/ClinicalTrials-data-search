@@ -8,6 +8,12 @@ COLUMNS = ['official_title', 'brief_title', 'drug']
 NORM_SIM_TO_DOC_LEN = True
 TOPMINETH = 45
 N_TOKENS = 5842
+IMPORT_PATH = dict(
+    VOCAB_PATH='./data/vocab',
+    COUNTER_PATH='./data/counter',
+    CORPUS_PATH='./data/corpus.csv',
+    SYN_MATRIX_PATH='./data/syn_mat.npz'
+)
 STOP_WORDS = {'around', 'namely', 'against', 'front', 'only',
               'third', 'very', 'however', 'again', 'top', 'until', 'hundred',
               'between', 'towards', 'meanwhile', 'always', 'mostly', 'should',
