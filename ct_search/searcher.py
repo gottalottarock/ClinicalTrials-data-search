@@ -1,12 +1,9 @@
 import re
 import numpy as np
-import pandas as pd
-import pickle
-from topmine import TopmineTokenizer
 from scipy import sparse
-from corpus import Corpus
+from .corpus import Corpus
 from sklearn.feature_extraction.text import CountVectorizer
-from config import STOP_WORDS
+from .config import STOP_WORDS
 
 
 def tokenize(string):
@@ -27,6 +24,12 @@ def sent_to_ngrams(se, tok):
 def split_sents_to_ngrams(sents, tok, spl_pat='[()]'):
     return [t for st in re.split(pattern=spl_pat, string=sents)
             for t in sent_to_ngrams(st, tok) if t]
+
+
+def tokenizer(tok):
+    def tokzr(s):
+        return split_sents_to_ngrams(s, tok, '[\[）\])(（|]')
+    return tokzr
 
 
 class Searcher():
@@ -109,32 +112,3 @@ class Searcher():
         final_docs_index, final_similarity = self.filter_similarity(docs_index,
                                                                     similarity)
         self.print_results(final_docs_index, final_similarity, debug)
-
-
-if __name__ == "__main__":
-    DEBUG = False
-    query = ' cell'
-
-    df = pd.read_csv('../data/corpus.csv', sep='\t')
-    with open('../../vocab_ngrams', 'rb') as f:
-        vocab = pickle.load(f)
-    with open('../../count_ngrams', 'rb') as f:
-        counter = pickle.load(f)
-    TopMineTH = 45
-    n_tokens = 5842
-    tok = TopmineTokenizer(counter=counter, n_tokens=n_tokens,
-                           threshold=TopMineTH, vocab=vocab)
-
-    def tokenizer(s): return split_sents_to_ngrams(s, tok, '[\[）\])(（|]')
-
-    searcher = Searcher(vocab=vocab, tokenizer=tokenizer, df=df,
-                        path_to_syn_matrix='../data/syn_mat.npz')
-
-    searcher.search(query=query,
-                    binary_query=BINARY_QUERY,
-                    add_synonyms_to_query=ADD_SYNONYMS_TO_QUERY,
-                    norm_query=NORM_QUERY, phases=[1, 2, 3],
-                    include_without_phase=INCLUDE_WITHOUT_PHASE,
-                    binary_docs=BINARY_DOCS,
-                    add_synonims_to_docs=ADD_SYNONIMS_TO_DOCS, columns=COLUMNS,
-                    norm_sim_to_doc_len=NORM_SIM_TO_DOC_LEN, debug=DEBUG)
