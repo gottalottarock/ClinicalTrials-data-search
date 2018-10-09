@@ -6,6 +6,8 @@ BINARY_DOCS = True
 ADD_SYNONIMS_TO_DOCS = True
 COLUMNS = ['official_title', 'brief_title', 'drug']
 NORM_SIM_TO_DOC_LEN = True
+TOPMINETH = 45
+N_TOKENS = 5842
 STOP_WORDS = {'around', 'namely', 'against', 'front', 'only',
               'third', 'very', 'however', 'again', 'top', 'until', 'hundred',
               'between', 'towards', 'meanwhile', 'always', 'mostly', 'should',
