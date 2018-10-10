@@ -8,7 +8,7 @@ class Corpus():
         self.corpus = df
 
     def load_corpus(self, path_to_df):
-        self.corpus = pd.read_csv(path_to_df)
+        self.corpus = pd.read_csv(path_to_df).reset_index(drop=True)
         # self.syn_mat = csr_matrix.read_pickle(path_to_syn_mat)
 
     def get_docs_of_phases(self, phases, include_without_phase=False):
