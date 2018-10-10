@@ -1,10 +1,10 @@
 import re
 import numpy as np
 from scipy import sparse
-from .corpus import Corpus
-from sklearn.feature_extraction.text import CountVectorizer
 from scipy.sparse import find
+from sklearn.feature_extraction.text import CountVectorizer
 from .config import STOP_WORDS
+from .corpus import Corpus
 
 
 def tokenize(string):

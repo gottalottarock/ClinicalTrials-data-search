@@ -1,6 +1,6 @@
-import pandas as pd
 import argparse
 import pickle
+import pandas as pd
 from ct_search.topmine import TopmineTokenizer
 from ct_search import config
 from ct_search.searcher import Searcher, tokenizer
