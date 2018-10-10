@@ -1,18 +1,18 @@
-BINARY_QUERY = True
-ADD_SYNONYMS_TO_QUERY = False
-NORM_QUERY = False
-INCLUDE_WITHOUT_PHASE = True
-BINARY_DOCS = True
-ADD_SYNONIMS_TO_DOCS = True
-COLUMNS = ['official_title', 'brief_title', 'drug']
-NORM_SIM_TO_DOC_LEN = False
-TOPMINETH = 45
-N_TOKENS = 5842
+BINARY_QUERY = True           #True = do not consider word frequency in query embedding
+ADD_SYNONYMS_TO_QUERY = False #add synonyms to auery embedding
+NORM_QUERY = False            #normalize query embedding to the Frobenius norm(2-norm, Euclidean norm)
+INCLUDE_WITHOUT_PHASE = True  #include docs with blank phase.
+BINARY_DOCS = True            #index setting. True = do not consider word frequency in doc's embeddings
+ADD_SYNONIMS_TO_DOCS = True   #add synonyms to doc's embeddings
+COLUMNS = ['official_title', 'brief_title', 'drug'] #columns for building embeddings
+NORM_SIM_TO_DOC_LEN = False   #normalize similarity to the Frobenius norm(2-norm, Euclidean norm)
+TOPMINETH = 45                #Topmine treshhold, 4 used to mine ngrams from docs.
+N_TOKENS = 5842               #Magic Topmine parameter
 IMPORT_PATH = dict(
-    VOCAB_PATH='./data/vocab',
-    COUNTER_PATH='./data/counter',
-    CORPUS_PATH='./data/corpus.csv',
-    SYN_MATRIX_PATH='./data/syn_mat.npz'
+    VOCAB_PATH='./data/vocab',                          #Dict object with vocab: {frozenset(ngram):number}
+    COUNTER_PATH='./data/counter',                      #Counter object with counts of all possible ngrams from docs
+    CORPUS_PATH='./data/corpus.csv',                    #Dataframe with docs
+    SYN_MATRIX_PATH='./data/syn_mat.npz'                #MATRIX FROM HELL! Precomputed words similarity!
 )
 STOP_WORDS = {'around', 'namely', 'against', 'front', 'only',
               'third', 'very', 'however', 'again', 'top', 'until', 'hundred',
