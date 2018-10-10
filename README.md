@@ -17,3 +17,5 @@ optional arguments:
   --debug               
                         -s + print word's weights in query, docs embaddings for each result
 ```
+
+Some additional configs can be changed in /ct_search/config.py, they described there.
