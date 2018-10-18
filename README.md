@@ -15,7 +15,7 @@ optional arguments:
   -s, --similarity      
                         print similarity to the query for each result 
   --debug               
-                        -s + print word's weights in query, docs embaddings for each result
+                        -s + print word's weights in query, words' embeddings for each result
 ```
 
 Some additional configs can be changed in /ct_search/config.py, they described there.
